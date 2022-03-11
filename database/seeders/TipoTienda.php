@@ -21,6 +21,6 @@ class TipoTienda extends Seeder
           ['Tipo' => 'Matriz',]
         ];
 
-        DB::table('TipoTienda')->insert($tipos);
+        DB::table('tipo_tiendas')->insert($tipos);
     }
 }

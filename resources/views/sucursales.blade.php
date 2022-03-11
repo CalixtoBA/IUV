@@ -44,8 +44,10 @@
     <div class="col-md-4">
       <label for="validationCustom02" class="form-label">Tipo</label>
       <select class="form-select" id="validationCustom02" required>
-        <option selected disabled value="">Seleccionar...</option>
-        <option>...</option>
+          <option selected disabled value="">Seleccionar...</option>
+          @foreach ($Csucursal as $item)
+            <option value="{{$item->IdTipoTienda}}">{{$item->Tipo}}</option>
+          @endforeach
       </select>
     </div>
     <div class="col-md-4">
@@ -67,7 +69,9 @@
       <label for="validationCustom05" class="form-label">Status</label>
       <select class="form-select" id="validationCustom05" required>
         <option selected disabled value="">Seleccionar...</option>
-        <option>...</option>
+        @foreach ($Cstatus as $item1)
+          <option value="{{$item1->IdStatus}}">{{$item1->N_Status}}</option>
+        @endforeach
       </select>
     </div>
     <h3>Domicilio.</h3>
@@ -91,14 +95,18 @@
       <label for="validationCustom10" class="form-label">Ciudad</label>
       <select class="form-select" id="validationCustom10" required>
         <option selected disabled value="">Seleccionar...</option>
-        <option>...</option>
+        @foreach ($Cciudad as $item2)
+          <option value="{{$item2->IdCiudad}}">{{$item2->N_Ciudad}}</option>
+        @endforeach
       </select>
     </div>
     <div class="col-md-4">
       <label for="validationCustom11" class="form-label">Estado</label>
       <select class="form-select" id="validationCustom11" required>
         <option selected disabled value="">Seleccionar...</option>
-        <option>...</option>
+        @foreach ($Cestado as $item3)
+          <option value="{{$item3->IdEstado}}">{{$item3->N_Estado}}</option>
+        @endforeach
       </select>
     </div>
     <div class="col-md-4">

@@ -28,6 +28,6 @@ class Ciudad extends Seeder
           ['N_Ciudad'=>'Ciudad Obregón'],
         ];
 
-        DB::table('Ciudad')->insert($ciudades);
+        DB::table('ciudads')->insert($ciudades);
     }
 }

@@ -28,6 +28,6 @@ class Estados extends Seeder
         ['N_Estado'=>'Durango'],
       ];
 
-      DB::table('Estados')->insert($estado);
+      DB::table('estados')->insert($estado);
     }
 }

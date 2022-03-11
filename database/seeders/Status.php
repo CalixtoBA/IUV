@@ -20,6 +20,6 @@ class Status extends Seeder
         ['N_Status' => 'Inactivo',]
       ];
 
-      DB::table('Status')->insert($status);
+      DB::table('statuses')->insert($status);
     }
 }
