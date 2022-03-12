@@ -23,6 +23,6 @@ class Puesto extends Seeder
           ['N_Puesto'=>'Gerente de Marketing'],
         ];
 
-          DB::table('Puesto')->insert($puesto);
+          DB::table('puestos')->insert($puesto);
     }
 }

@@ -111,7 +111,12 @@
     </div>
     <div class="col-md-4">
       <label for="validationCustom12" class="form-label">Pais</label>
-      <input type="text" class="form-control" id="validationCustom12" required>
+      <select class="form-select" id="validationCustom12" required>
+        <option selected disabled value="">Seleccionar...</option>
+        @foreach ($Cpais as $item4)
+          <option value="{{$item4->IdPais}}">{{$item4->N_Pais}}</option>
+        @endforeach
+      </select>
     </div>
     <div class="col-9">
       <button class="btn btn-outline-secondary" type="submit">Aceptar</button>

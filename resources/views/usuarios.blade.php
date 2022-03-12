@@ -69,7 +69,9 @@
       <label for="validationCustom08" class="form-label">Status</label>
       <select class="form-select" id="validationCustom08" required>
         <option selected disabled value="">Seleccionar...</option>
-        <option>...</option>
+        @foreach ($Cstatus as $item)
+          <option value="{{$item->IdStatus}}">{{$item->N_Status}}</option>
+        @endforeach
       </select>
     </div>
     <div class="col-9">

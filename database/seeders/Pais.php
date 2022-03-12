@@ -28,6 +28,6 @@ class Pais extends Seeder
         ['N_Pais'=>'Durango'],
       ];
 
-      DB::table('Pais')->insert($pais);
+      DB::table('pais')->insert($pais);
     }
 }

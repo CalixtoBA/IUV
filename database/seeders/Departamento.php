@@ -23,6 +23,6 @@ class Departamento extends Seeder
           ['N_Departamento'=>'Compras'],
         ];
 
-        DB::table('Departamento')->insert($deparment);
+        DB::table('departamentos')->insert($deparment);
     }
 }
