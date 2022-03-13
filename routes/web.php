@@ -20,3 +20,4 @@ Route::get('menu',[PagesController::class,'Menu']);
 Route::get('sucursales',[PagesController::class,'Sucursales']);
 Route::get('empleados',[PagesController::class,'Empleado']);
 Route::get('usuarios',[PagesController::class,'Usuarios']);
+Route::post('sucursales',[PagesController::class,'Isucursal'])->name('sucursal.crear');

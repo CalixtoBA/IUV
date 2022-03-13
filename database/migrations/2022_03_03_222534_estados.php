@@ -11,7 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
-    public function up()
+    /**public function up()
     {
         Schema::create('Estados', function(Blueprint $table){
           $table->bigIncrements('IdEstado');
@@ -24,8 +24,8 @@ return new class extends Migration
      *
      * @return void
      */
-    public function down()
+    /**public function down()
     {
         Schema::dropIfExists('Estados');
-    }
+    }*/
 };

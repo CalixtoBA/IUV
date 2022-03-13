@@ -16,16 +16,16 @@ class Pais extends Seeder
     public function run()
     {
       $pais=[
-        ['N_Pais'=>'Aguascalientes'],
-        ['N_Pais'=>'Baja California'],
-        ['N_Pais'=>'Baja California Sur'],
-        ['N_Pais'=>'Campeche'],
-        ['N_Pais'=>'Chiapas'],
-        ['N_Pais'=>'Chihuahua'],
-        ['N_Pais'=>'Ciudad de México'],
-        ['N_Pais'=>'Coahuila'],
-        ['N_Pais'=>'Colima'],
-        ['N_Pais'=>'Durango'],
+        ['N_Pais'=>'Antigua y Barbuda'],
+        ['N_Pais'=>'Aruba'],
+        ['N_Pais'=>'Bahamas'],
+        ['N_Pais'=>'Barbados'],
+        ['N_Pais'=>'Cuba'],
+        ['N_Pais'=>'Dominica'],
+        ['N_Pais'=>'Grenada'],
+        ['N_Pais'=>'Guadalupe'],
+        ['N_Pais'=>'Haití'],
+        ['N_Pais'=>'Islas Caimán'],
       ];
 
       DB::table('pais')->insert($pais);

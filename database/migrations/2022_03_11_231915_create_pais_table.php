@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pais', function (Blueprint $table) {
           $table->bigIncrements('IdPais');
-          $table->string('N_Pais',20);
+          $table->string('N_Pais',30);
         });
     }
 

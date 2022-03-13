@@ -11,9 +11,9 @@ return new class extends Migration
      *
      * @return void
      */
-    /**public function up()
+    public function up()
     {
-        Schema::create('Usuarios', function(Blueprint $table){
+        Schema::create('usuarios', function (Blueprint $table) {
           $table->bigIncrements('IdUsuarios');
           $table->string('login',15);
           $table->foreignId('IdEmpleado');
@@ -28,8 +28,8 @@ return new class extends Migration
      *
      * @return void
      */
-    /**public function down()
+    public function down()
     {
-      Schema::dropIfExists('Usuarios');
-    }*/
+        Schema::dropIfExists('usuarios');
+    }
 };

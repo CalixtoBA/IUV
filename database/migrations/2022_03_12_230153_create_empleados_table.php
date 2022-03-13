@@ -11,9 +11,9 @@ return new class extends Migration
      *
      * @return void
      */
-    /**public function up()
+    public function up()
     {
-        Schema::create('Empleados', function(Blueprint $table){
+        Schema::create('empleados', function (Blueprint $table) {
           $table->bigIncrements('IdEmpleado');
           $table->string('NombreE',20);
           $table->string('A_Paterno',20);
@@ -29,7 +29,7 @@ return new class extends Migration
           $table->foreignId('IdPais');
           $table->foreignId('IdDepartamento');
           $table->foreignId('IdPuesto');
-          $table->foreignId('IdSucursal');
+          $table->foreignId('IdSucursal')->nullable();
           $table->date('FechaIngreso');
           $table->foreignId('IdStatus');
         });
@@ -40,8 +40,8 @@ return new class extends Migration
      *
      * @return void
      */
-    /**public function down()
+    public function down()
     {
-        Schema::dropIfExists('Empleados');
-    }*/
+        Schema::dropIfExists('empleados');
+    }
 };
