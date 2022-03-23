@@ -9,4 +9,9 @@ class Sucursal extends Model
 {
     use HasFactory;
     public $timestamps = false;
+    protected $primaryKey = 'IdSucursal';
+    /**public function SucOM()
+    {
+      return $this->belongsTo(TipoTienda::class);
+    }*/
 }

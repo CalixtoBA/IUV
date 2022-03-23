@@ -10,9 +10,9 @@
     <div class="p-3 mb-2 bg-primary bg-gradient text-white">Prueba práctica</div>
     <br>
     <div class="container">
-      @yield('seccion')
-      @yield('seccion2')
-      @yield('seccion3')
+      <div id="DS">@yield('seccion')</div>
+      <div id="DS2">@yield('seccion2')</div>
+      <div id="DS3">@yield('seccion3')</div>
     </div>
     <br>
     <div class="p-3 mb-2 bg-primary bg-gradient text-white">Andres Calixto Benites</div>
