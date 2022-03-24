@@ -6,10 +6,10 @@
     <form class="row g-3 needs-validation" novalidate>
       <br>
       @foreach ($csucursal as $key)
-        <div class="col-9">
+        <div class="col-9 d-inline">
           <a href="sucursales" class="btn btn-outline-secondary" type="button">Nuevo registro</a>
           <a href="{{Route('sucursal.actualizar', $key->IdSucursal)}}" class="btn btn-outline-secondary" type="button">Actualizar registro</a>
-          <button class="btn btn-outline-secondary" type="button">Eliminar registro</button>
+          <a href="{{Route('sucursal.eliminar',$key->IdSucursal)}}" class="btn btn-outline-secondary" type="button">Eliminar registro</a>
           <a href="menu" class="btn btn-outline-secondary" type="button">Salir</a>
         </div>
       <h3>Datos generales.</h3>

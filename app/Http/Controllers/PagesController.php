@@ -103,6 +103,26 @@ class PagesController extends Controller
     $asucursal->save();
     return redirect('/sucursalc');
   }
+  public function Esucursal($IdSucursal){
+    $esucursal = Sucursal::join('tipo_tiendas','sucursals.IdTipoTienda','=','tipo_tiendas.IdTipoTienda')
+      ->join('statuses','sucursals.IdStatus','=','statuses.IdStatus')
+      ->join('ciudads','sucursals.IdCiudad','=','ciudads.IdCiudad')
+      ->join('estados','sucursals.IdEstado','=','estados.IdEstado')
+      ->join('pais','sucursals.IdPais','=','pais.IdPais')
+      ->select('sucursals.IdSucursal','sucursals.D_calle','sucursals.D_colonia','sucursals.D_cp','sucursals.D_numero',
+              'sucursals.EmailTienda','sucursals.NombreTienda','sucursals.TelefonoTienda','sucursals.IdTipoTienda',
+              'tipo_tiendas.Tipo','sucursals.IdStatus','statuses.N_Status','sucursals.IdCiudad','ciudads.N_Ciudad',
+              'sucursals.IdEstado','estados.N_Estado','sucursals.IdPais','pais.N_Pais')
+      ->where('sucursals.IdSucursal','=',$IdSucursal)
+      ->get();
+    return view('sucursald',compact('esucursal'));
+  }
+  Public function Ersucursal(Request $request){
+    //return $request->all();
+    $esucursal = Sucursal::where('IdSucursal','=',$request->IdSucursal)->first();
+    $esucursal->delete();
+    return redirect('/sucursalc');
+  }
   Public function Empleado(){
     $Cciudad = Ciudad::all();
     $Cestado = Estado::all();
