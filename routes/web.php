@@ -25,5 +25,7 @@ Route::get('/sucursale/{IdSucursal}',[PagesController::class,'Asucursal'])->name
 Route::PUT('/sucursale',[PagesController::class,'Arsucursal'])->name('sucursal.actualizarr');
 Route::get('/sucursald/{IdSucursal}',[PagesController::class,'Esucursal'])->name('sucursal.eliminar');
 Route::PUT('/sucursald',[PagesController::class,'Ersucursal'])->name('sucursal.eliminarr');
+Route::get('empleadosc',[PagesController::class,'Cempleados']);
 Route::get('empleados',[PagesController::class,'Empleado']);
+Route::post('empleados',[PagesController::class,'Iempleado'])->name('empleado.crear');
 Route::get('usuarios',[PagesController::class,'Usuarios']);

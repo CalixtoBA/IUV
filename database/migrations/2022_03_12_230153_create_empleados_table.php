@@ -18,7 +18,7 @@ return new class extends Migration
           $table->string('NombreE',20);
           $table->string('A_Paterno',20);
           $table->string('A_Materno',20);
-          $table->integer('TelefonoE');
+          $table->string('TelefonoE',10);
           $table->string('EmailE',20);
           $table->string('D_calle',20);
           $table->string('D_numero',5);

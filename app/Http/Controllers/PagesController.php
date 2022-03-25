@@ -12,6 +12,7 @@ use App\Models\Pais;
 use App\Models\Departamento;
 use App\Models\Puesto;
 use App\Models\Sucursal;
+use App\Models\Empleado;
 
 class PagesController extends Controller
 {
@@ -63,7 +64,7 @@ class PagesController extends Controller
     $isucursal->IdEstado = $request->input('IdEstado');
     $isucursal->IdPais = $request->input('IdPais');
     $isucursal->save();
-    return back();
+    return redirect('/sucursalc');
   }
   public function Asucursal($IdSucursal){
     $asucursal = Sucursal::join('tipo_tiendas','sucursals.IdTipoTienda','=','tipo_tiendas.IdTipoTienda')
@@ -123,14 +124,55 @@ class PagesController extends Controller
     $esucursal->delete();
     return redirect('/sucursalc');
   }
+  public function Cempleados(){
+    $cempleados = Empleado::join('sucursals','empleados.IdSucursal','=','sucursals.IdSucursal')
+      ->join('ciudads','empleados.IdCiudad','=','ciudads.IdCiudad')
+      ->join('estados','empleados.IdEstado','=','estados.IdEstado')
+      ->join('pais','empleados.IdPais','=','pais.IdPais')
+      ->join('departamentos','empleados.IdDepartamento','=','departamentos.IdDepartamento')
+      ->join('puestos','empleados.IdPuesto','=','puestos.IdPuesto')
+      ->join('statuses','sucursals.IdStatus','=','statuses.IdStatus')
+      ->select('empleados.IdEmpleado','empleados.NombreE','empleados.A_Paterno','empleados.A_Materno','empleados.TelefonoE',
+              'empleados.EmailE','empleados.D_calle','empleados.D_numero','empleados.D_colonia','empleados.D_cp',
+              'empleados.IdCiudad','ciudads.N_Ciudad','empleados.IdEstado','estados.N_Estado','empleados.IdPais','pais.N_Pais',
+              'empleados.IdDepartamento','departamentos.N_Departamento','empleados.IdPuesto','puestos.N_Puesto',
+              'empleados.IdSucursal','sucursals.NombreTienda','empleados.FechaIngreso','empleados.IdStatus','statuses.N_Status')
+      ->orderby('empleados.IdEmpleado')
+      ->simplePaginate(1);
+    return view('empleadosc',compact('cempleados'));
+  }
   Public function Empleado(){
     $Cciudad = Ciudad::all();
     $Cestado = Estado::all();
     $Cpais = Pais::all();
     $Cdepartamento = Departamento::all();
     $Cpuesto = Puesto::all();
+    $Csucursal = Sucursal::all();
     $Cstatus = Status::all();
-    return view('empleados',compact('Cciudad','Cestado','Cpais','Cdepartamento','Cpuesto','Cstatus'));
+    return view('empleados',compact('Cciudad','Cestado','Cpais','Cdepartamento','Cpuesto','Csucursal','Cstatus'));
+  }
+  Public function Iempleado(Request $Odatos){
+    //return $Odatos->all();
+    $iempleado = new Empleado;
+    $iempleado->NombreE = $Odatos->input('nombre');
+    $iempleado->A_Paterno = $Odatos->input('apaterno');
+    $iempleado->A_Materno = $Odatos->input('amaterno');
+    $iempleado->TelefonoE = $Odatos->input('telefono');
+    $iempleado->EmailE = $Odatos->input('correoe');
+    $iempleado->D_calle = $Odatos->input('calle');
+    $iempleado->D_numero = $Odatos->input('numero');
+    $iempleado->D_colonia = $Odatos->input('colonia');
+    $iempleado->D_cp = $Odatos->input('cp');
+    $iempleado->IdCiudad = $Odatos->input('ciudad');
+    $iempleado->IdEstado = $Odatos->input('estado');
+    $iempleado->IdPais = $Odatos->input('pais');
+    $iempleado->IdDepartamento = $Odatos->input('departamento');
+    $iempleado->IdPuesto = $Odatos->input('puesto');
+    $iempleado->IdSucursal = $Odatos->input('sucursal');
+    $iempleado->FechaIngreso = $Odatos->input('fingreso');
+    $iempleado->IdStatus = $Odatos->input('estatus');
+    $iempleado->save();
+    return redirect('/empleadosc');
   }
   Public function Usuarios(){
     $Cstatus = Status::all();

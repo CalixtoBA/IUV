@@ -18,7 +18,7 @@
               <a class="nav-link active" aria-current="page" href="sucursalc">Sucursales</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="empleados">Empleados</a>
+              <a class="nav-link active" aria-current="page" href="empleadosc">Empleados</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="usuarios">Usuarios</a>
