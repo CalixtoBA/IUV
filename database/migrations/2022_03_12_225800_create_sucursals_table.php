@@ -15,19 +15,19 @@ return new class extends Migration
     {
         Schema::create('sucursals', function (Blueprint $table) {
           $table->bigIncrements('IdSucursal');
-          $table->string('D_calle',20);
-          $table->string('D_colonia',20);
-          $table->integer('D_cp');
-          $table->string('D_numero',5);
-          $table->string('EmailTienda',20);
+          $table->string('D_calle',20)->nullable();
+          $table->string('D_colonia',20)->nullable();
+          $table->integer('D_cp')->nullable();
+          $table->string('D_numero',5)->nullable();
+          $table->string('EmailTienda',20)->nullable();
           $table->foreignId('IdEmpleado')->nullable();
-          $table->foreignId('IdCiudad');
-          $table->foreignId('IdEstado');
-          $table->foreignId('IdPais');
-          $table->foreignId('IdStatus');
-          $table->foreignId('IdTipoTienda');
-          $table->string('NombreTienda',20);
-          $table->string('TelefonoTienda',10);
+          $table->foreignId('IdCiudad')->nullable();
+          $table->foreignId('IdEstado')->nullable();
+          $table->foreignId('IdPais')->nullable();
+          $table->foreignId('IdStatus')->nullable();
+          $table->foreignId('IdTipoTienda')->nullable();
+          $table->string('NombreTienda',30);
+          $table->string('TelefonoTienda',10)->nullable();
         });
     }
 

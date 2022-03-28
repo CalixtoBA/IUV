@@ -29,10 +29,12 @@
         <input type="text" name="EmailTienda" class="form-control" id="validationCustom04" required>
       </div>
       <div class="col-md-4">
-        <label class="form-label">Encargado</label>
-        <select name="IdEmpleado" class="form-select">
-          <option selected disabled value="">Seleccionar...</option>
-          <option value="0">...</option>
+        <label for="validationCustom13" class="form-label">Encargado</label>
+        <select class="form-select" name="IdEmpleado" id="validationCustom13" required>
+          <option selected disabled value="" >Seleccionar...</option>
+          @foreach ($Cempleado as $key)
+            <option value="{{$key->IdEmpleado}}">{{$key->Encargado}}</option>
+          @endforeach
         </select>
       </div>
       <div class="col-md-4">

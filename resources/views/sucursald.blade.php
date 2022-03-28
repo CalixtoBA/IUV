@@ -34,7 +34,7 @@
         <div class="col-md-4">
           <label class="form-label">Encargado</label>
           <select name="IdEmpleado" class="form-select" disabled="true">
-            <option selected disabled value="">Seleccionar...</option>
+            <option value="{{$key->IdEmpleado}}">{{$key->Encargado}}</option>
           </select>
         </div>
         <div class="col-md-4">

@@ -31,10 +31,12 @@ class PagesController extends Controller
       ->join('ciudads','sucursals.IdCiudad','=','ciudads.IdCiudad')
       ->join('estados','sucursals.IdEstado','=','estados.IdEstado')
       ->join('pais','sucursals.IdPais','=','pais.IdPais')
+      ->join('empleados','sucursals.IdEmpleado','=','empleados.IdEmpleado')
       ->select('sucursals.IdSucursal','sucursals.D_calle','sucursals.D_colonia','sucursals.D_cp','sucursals.D_numero',
               'sucursals.EmailTienda','sucursals.NombreTienda','sucursals.TelefonoTienda','sucursals.IdTipoTienda',
               'tipo_tiendas.Tipo','sucursals.IdStatus','statuses.N_Status','sucursals.IdCiudad','ciudads.N_Ciudad',
-              'sucursals.IdEstado','estados.N_Estado','sucursals.IdPais','pais.N_Pais')
+              'sucursals.IdEstado','estados.N_Estado','sucursals.IdPais','pais.N_Pais','sucursals.IdEmpleado',
+              DB::raw("Concat(empleados.NombreE,' ',empleados.A_Paterno,' ',empleados.A_Materno) as Encargado"))
       ->orderby('sucursals.IdSucursal')
       ->simplePaginate(1);
     return view('sucursalc',compact('csucursal'));
@@ -45,7 +47,8 @@ class PagesController extends Controller
     $Cciudad = Ciudad::all();
     $Cestado = Estado::all();
     $Cpais = Pais::all();
-    return view('sucursales',compact('Csucursal','Cstatus','Cciudad','Cestado','Cpais'));
+    $Cempleado = DB::table('empleados')->select('IdEmpleado',DB::raw("CONCAT(NombreE,' ',A_Paterno,' ',A_Materno) as Encargado"))->get();
+    return view('sucursales',compact('Csucursal','Cstatus','Cciudad','Cestado','Cpais','Cempleado'));
   }
   Public function Isucursal(Request $request){
     //return $request->all();
@@ -72,10 +75,12 @@ class PagesController extends Controller
       ->join('ciudads','sucursals.IdCiudad','=','ciudads.IdCiudad')
       ->join('estados','sucursals.IdEstado','=','estados.IdEstado')
       ->join('pais','sucursals.IdPais','=','pais.IdPais')
+      ->join('empleados','sucursals.IdEmpleado','=','empleados.IdEmpleado')
       ->select('sucursals.IdSucursal','sucursals.D_calle','sucursals.D_colonia','sucursals.D_cp','sucursals.D_numero',
               'sucursals.EmailTienda','sucursals.NombreTienda','sucursals.TelefonoTienda','sucursals.IdTipoTienda',
               'tipo_tiendas.Tipo','sucursals.IdStatus','statuses.N_Status','sucursals.IdCiudad','ciudads.N_Ciudad',
-              'sucursals.IdEstado','estados.N_Estado','sucursals.IdPais','pais.N_Pais')
+              'sucursals.IdEstado','estados.N_Estado','sucursals.IdPais','pais.N_Pais','sucursals.IdEmpleado',
+              DB::raw("Concat(empleados.NombreE,' ',empleados.A_Paterno,' ',empleados.A_Materno) as Encargado"))
       ->where('sucursals.IdSucursal','=',$IdSucursal)
       ->get();
     $Csucursal = TipoTienda::all();
@@ -83,7 +88,8 @@ class PagesController extends Controller
     $Cciudad = Ciudad::all();
     $Cestado = Estado::all();
     $Cpais = Pais::all();
-    return view('sucursale',compact('asucursal','Csucursal','Cstatus','Cciudad','Cestado','Cpais'));
+    $Cempleado = DB::table('empleados')->select('IdEmpleado',DB::raw("CONCAT(NombreE,' ',A_Paterno,' ',A_Materno) as Encargado"))->get();
+    return view('sucursale',compact('asucursal','Csucursal','Cstatus','Cciudad','Cestado','Cpais','Cempleado'));
   }
   Public function Arsucursal(Request $request){
     //return $request->all();
@@ -110,10 +116,12 @@ class PagesController extends Controller
       ->join('ciudads','sucursals.IdCiudad','=','ciudads.IdCiudad')
       ->join('estados','sucursals.IdEstado','=','estados.IdEstado')
       ->join('pais','sucursals.IdPais','=','pais.IdPais')
+      ->join('empleados','sucursals.IdEmpleado','=','empleados.IdEmpleado')
       ->select('sucursals.IdSucursal','sucursals.D_calle','sucursals.D_colonia','sucursals.D_cp','sucursals.D_numero',
               'sucursals.EmailTienda','sucursals.NombreTienda','sucursals.TelefonoTienda','sucursals.IdTipoTienda',
               'tipo_tiendas.Tipo','sucursals.IdStatus','statuses.N_Status','sucursals.IdCiudad','ciudads.N_Ciudad',
-              'sucursals.IdEstado','estados.N_Estado','sucursals.IdPais','pais.N_Pais')
+              'sucursals.IdEstado','estados.N_Estado','sucursals.IdPais','pais.N_Pais','sucursals.IdEmpleado',
+              DB::raw("Concat(empleados.NombreE,' ',empleados.A_Paterno,' ',empleados.A_Materno) as Encargado"))
       ->where('sucursals.IdSucursal','=',$IdSucursal)
       ->get();
     return view('sucursald',compact('esucursal'));
@@ -125,13 +133,13 @@ class PagesController extends Controller
     return redirect('/sucursalc');
   }
   public function Cempleados(){
-    $cempleados = Empleado::join('sucursals','empleados.IdSucursal','=','sucursals.IdSucursal')
-      ->join('ciudads','empleados.IdCiudad','=','ciudads.IdCiudad')
+    $ccempleados = Empleado::join('ciudads','empleados.IdCiudad','=','ciudads.IdCiudad')
       ->join('estados','empleados.IdEstado','=','estados.IdEstado')
       ->join('pais','empleados.IdPais','=','pais.IdPais')
       ->join('departamentos','empleados.IdDepartamento','=','departamentos.IdDepartamento')
       ->join('puestos','empleados.IdPuesto','=','puestos.IdPuesto')
-      ->join('statuses','sucursals.IdStatus','=','statuses.IdStatus')
+      ->join('sucursals','empleados.IdSucursal','=','sucursals.IdSucursal')
+      ->join('statuses','empleados.IdStatus','=','statuses.IdStatus')
       ->select('empleados.IdEmpleado','empleados.NombreE','empleados.A_Paterno','empleados.A_Materno','empleados.TelefonoE',
               'empleados.EmailE','empleados.D_calle','empleados.D_numero','empleados.D_colonia','empleados.D_cp',
               'empleados.IdCiudad','ciudads.N_Ciudad','empleados.IdEstado','estados.N_Estado','empleados.IdPais','pais.N_Pais',
@@ -139,7 +147,7 @@ class PagesController extends Controller
               'empleados.IdSucursal','sucursals.NombreTienda','empleados.FechaIngreso','empleados.IdStatus','statuses.N_Status')
       ->orderby('empleados.IdEmpleado')
       ->simplePaginate(1);
-    return view('empleadosc',compact('cempleados'));
+    return view('empleadosc',compact('ccempleados'));
   }
   Public function Empleado(){
     $Cciudad = Ciudad::all();
@@ -172,6 +180,76 @@ class PagesController extends Controller
     $iempleado->FechaIngreso = $Odatos->input('fingreso');
     $iempleado->IdStatus = $Odatos->input('estatus');
     $iempleado->save();
+    return redirect('/empleadosc');
+  }
+  public function Aempleado($IdEmpleado){
+    $eempleados = Empleado::join('sucursals','empleados.IdSucursal','=','sucursals.IdSucursal')
+      ->join('ciudads','empleados.IdCiudad','=','ciudads.IdCiudad')
+      ->join('estados','empleados.IdEstado','=','estados.IdEstado')
+      ->join('pais','empleados.IdPais','=','pais.IdPais')
+      ->join('departamentos','empleados.IdDepartamento','=','departamentos.IdDepartamento')
+      ->join('puestos','empleados.IdPuesto','=','puestos.IdPuesto')
+      ->join('statuses','empleados.IdStatus','=','statuses.IdStatus')
+      ->select('empleados.IdEmpleado','empleados.NombreE','empleados.A_Paterno','empleados.A_Materno','empleados.TelefonoE',
+              'empleados.EmailE','empleados.D_calle','empleados.D_numero','empleados.D_colonia','empleados.D_cp',
+              'empleados.IdCiudad','ciudads.N_Ciudad','empleados.IdEstado','estados.N_Estado','empleados.IdPais','pais.N_Pais',
+              'empleados.IdDepartamento','departamentos.N_Departamento','empleados.IdPuesto','puestos.N_Puesto',
+              'empleados.IdSucursal','sucursals.NombreTienda','empleados.FechaIngreso','empleados.IdStatus','statuses.N_Status')
+      ->where('empleados.IdEmpleado','=',$IdEmpleado)
+      ->get();
+    $Cciudad = Ciudad::all();
+    $Cestado = Estado::all();
+    $Cpais = Pais::all();
+    $Cdepartamento = Departamento::all();
+    $Cpuesto = Puesto::all();
+    $Csucursal = Sucursal::all();
+    $Cstatus = Status::all();
+    return view('empleadoe',compact('eempleados','Cciudad','Cestado','Cpais','Cdepartamento','Cpuesto','Csucursal','Cstatus'));
+  }
+  Public function Arempleado(Request $request){
+    //return $request->all();
+    $arempleado = Empleado::where('IdEmpleado','=',$request->Identificador)->first();
+    $arempleado->NombreE = $request->Nombre;
+    $arempleado->A_Paterno = $request->Apaterno;
+    $arempleado->A_Materno = $request->Amaterno;
+    $arempleado->TelefonoE = $request->Telefono;
+    $arempleado->EmailE = $request->Correo;
+    $arempleado->D_calle = $request->Calle;
+    $arempleado->D_numero = $request->Numero;
+    $arempleado->D_colonia = $request->Colonia;
+    $arempleado->D_cp = $request->cp;
+    $arempleado->IdCiudad = $request->ciudad;
+    $arempleado->IdEstado = $request->estado;
+    $arempleado->IdPais = $request->pais;
+    $arempleado->IdDepartamento = $request->departamento;
+    $arempleado->IdPuesto = $request->puesto;
+    $arempleado->IdSucursal = $request->sucursal;
+    $arempleado->FechaIngreso = $request->fingreso;
+    $arempleado->IdStatus = $request->estatus;
+    $arempleado->save();
+    return redirect('/empleadosc');
+  }
+  public function Eempleado($IdEmpleado){
+    $eempleado = Empleado::join('ciudads','empleados.IdCiudad','=','ciudads.IdCiudad')
+      ->join('estados','empleados.IdEstado','=','estados.IdEstado')
+      ->join('pais','empleados.IdPais','=','pais.IdPais')
+      ->join('departamentos','empleados.IdDepartamento','=','departamentos.IdDepartamento')
+      ->join('puestos','empleados.IdPuesto','=','puestos.IdPuesto')
+      ->join('sucursals','empleados.IdSucursal','=','sucursals.IdSucursal')
+      ->join('statuses','empleados.IdStatus','=','statuses.IdStatus')
+      ->select('empleados.IdEmpleado','empleados.NombreE','empleados.A_Paterno','empleados.A_Materno','empleados.TelefonoE',
+              'empleados.EmailE','empleados.D_calle','empleados.D_numero','empleados.D_colonia','empleados.D_cp',
+              'empleados.IdCiudad','ciudads.N_Ciudad','empleados.IdEstado','estados.N_Estado','empleados.IdPais','pais.N_Pais',
+              'empleados.IdDepartamento','departamentos.N_Departamento','empleados.IdPuesto','puestos.N_Puesto',
+              'empleados.IdSucursal','sucursals.NombreTienda','empleados.FechaIngreso','empleados.IdStatus','statuses.N_Status')
+      ->where('empleados.IdEmpleado','=',$IdEmpleado)
+      ->get();
+    return view('empleadosd',compact('eempleado'));
+  }
+  Public function Erempleado(Request $request){
+    //return $request->all();
+    $erempleado = Empleado::where('IdEmpleado','=',$request->Identificador)->first();
+    $erempleado->delete();
     return redirect('/empleadosc');
   }
   Public function Usuarios(){

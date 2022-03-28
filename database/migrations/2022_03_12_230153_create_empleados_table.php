@@ -18,20 +18,20 @@ return new class extends Migration
           $table->string('NombreE',20);
           $table->string('A_Paterno',20);
           $table->string('A_Materno',20);
-          $table->string('TelefonoE',10);
-          $table->string('EmailE',20);
-          $table->string('D_calle',20);
-          $table->string('D_numero',5);
-          $table->string('D_colonia',20);
-          $table->integer('D_cp');
-          $table->foreignId('IdCiudad');
-          $table->foreignId('IdEstado');
-          $table->foreignId('IdPais');
-          $table->foreignId('IdDepartamento');
-          $table->foreignId('IdPuesto');
+          $table->string('TelefonoE',10)->nullable();
+          $table->string('EmailE',20)->nullable();
+          $table->string('D_calle',20)->nullable();
+          $table->string('D_numero',5)->nullable();
+          $table->string('D_colonia',20)->nullable();
+          $table->integer('D_cp')->nullable();
+          $table->foreignId('IdCiudad')->nullable();
+          $table->foreignId('IdEstado')->nullable();
+          $table->foreignId('IdPais')->nullable();
+          $table->foreignId('IdDepartamento')->nullable();
+          $table->foreignId('IdPuesto')->nullable();
           $table->foreignId('IdSucursal')->nullable();
-          $table->date('FechaIngreso');
-          $table->foreignId('IdStatus');
+          $table->date('FechaIngreso')->nullable();
+          $table->foreignId('IdStatus')->nullable();
         });
     }
 

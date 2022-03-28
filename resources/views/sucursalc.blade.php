@@ -27,7 +27,7 @@
           </div>
           <div class="col-md-4">
             <label for="validationCustom02" class="form-label">Tipo</label>
-            <select class="form-select"  name="IdTipoTienda" id="validationCustom02">
+            <select class="form-select"  name="IdTipoTienda" id="validationCustom02" disabled>
                 <option value="{{$key->IdTipoTienda}}">{{$key->Tipo}}</option>
             </select>
           </div>
@@ -41,13 +41,13 @@
           </div>
           <div class="col-md-4">
             <label class="form-label">Encargado</label>
-            <select name="IdEmpleado" class="form-select">
-              <option selected disabled value="">Seleccionar...</option>
+            <select class="form-select" name="IdEmpleado" disabled>
+              <option value="{{$key->IdEmpleado}}">{{$key->Encargado}}</option>
             </select>
           </div>
           <div class="col-md-4">
             <label for="validationCustom05" class="form-label">Status</label>
-            <select class="form-select" name="IdStatus" id="validationCustom05">
+            <select class="form-select" name="IdStatus" id="validationCustom05" disabled>
               <option value="{{$key->IdStatus}}">{{$key->N_Status}}</option>
             </select>
           </div>
@@ -70,19 +70,19 @@
           </div>
           <div class="col-md-4">
             <label for="validationCustom10" class="form-label">Ciudad</label>
-            <select class="form-select" name="IdCiudad" id="validationCustom10">
+            <select class="form-select" name="IdCiudad" id="validationCustom10" disabled>
               <option value="{{$key->IdCiudad}}">{{$key->N_Ciudad}}</option>
             </select>
           </div>
           <div class="col-md-4">
             <label for="validationCustom11" class="form-label">Estado</label>
-            <select class="form-select" name="IdEstado" id="validationCustom11">
+            <select class="form-select" name="IdEstado" id="validationCustom11" disabled>
               <option value="{{$key->IdEstado}}">{{$key->N_Estado}}</option>
             </select>
           </div>
           <div class="col-md-4">
             <label for="validationCustom12" class="form-label">Pais</label>
-            <select class="form-select" name="IdPais" id="validationCustom12">
+            <select class="form-select" name="IdPais" id="validationCustom12" disabled>
               <option value="{{$key->IdPais}}">{{$key->N_Pais}}</option>
             </select>
           </div>

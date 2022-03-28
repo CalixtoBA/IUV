@@ -91,8 +91,8 @@
         </select>
       </div>
       <div class="col-md-4">
-        <label class="form-label">Sucursal</label>
-        <select class="form-select" name="sucursal">
+        <label for="validationCustom18" class="form-label">Sucursal</label>
+        <select class="form-select" id="validationCustom18" name="sucursal" required>
           <option selected disabled value="">Seleccionar...</option>
           @foreach ($Csucursal as $item5)
             <option value="{{$item5->IdSucursal}}">{{$item5->NombreTienda}}</option>

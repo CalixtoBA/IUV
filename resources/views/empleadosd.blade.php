@@ -2,24 +2,16 @@
 
 @section('seccion')
   <div id="S3">
-    <h3>Consulta de empleados.</h3><br>
-      @if (count($ccempleados) == 0)
-        <a href="empleados" class="btn btn-outline-secondary" type="button">Nuevo registro</a>
-        <a href="menu" class="btn btn-outline-secondary" type="button">Salir</a>
-      @else
-        <form class="row g-3 needs-validation" novalidate>
+    <h3>Eliminar empleado.</h3><br>
+        <form action="{{Route('empleado.eliminarr')}}" method="post" class="row g-3 needs-validation" novalidate>
+          @method('PUT')
+          @csrf
           <br>
-          @foreach ($ccempleados as $valor)
-            <div class="col-9 d-inline">
-              <a href="empleados" class="btn btn-outline-secondary" type="button">Nuevo registro</a>
-              <a href="{{Route('empleado.actualizar', $valor->IdEmpleado)}}" class="btn btn-outline-secondary" type="button">Actualizar registro</a>
-              <a href="{{Route('empleado.eliminar', $valor->IdEmpleado)}}" class="btn btn-outline-secondary" type="button">Eliminar registro</a>
-              <a href="menu" class="btn btn-outline-secondary" type="button">Salir</a>
-            </div>
+          @foreach ($eempleado as $valor)
             <h3>Datos generales.</h3>
             <div class="col-md-4">
               <label for="validationCustom01" class="form-label">Identificador</label>
-              <input type="text" name="Identificador" class="form-control" id="validationCustom01" value="{{$valor->IdEmpleado}}" disabled>
+              <input type="text" name="Identificador" class="form-control" id="validationCustom01" value="{{$valor->IdEmpleado}}" readonly>
             </div>
             <div class="col-md-4">
               <label for="validationCustom01" class="form-label">Nombre</label>
@@ -107,8 +99,10 @@
             </div>
           @endforeach
           <br><br>
-          {{ $ccempleados->links() }}
+          <div class="col-9">
+            <button class="btn btn-outline-secondary" type="submit">Aceptar</button>
+            <a href="/empleadosc" class="btn btn-outline-secondary" type="button">Salir</a>
+          </div>
         </form>
-      @endif
   </div>
 @endsection

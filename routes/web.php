@@ -28,4 +28,8 @@ Route::PUT('/sucursald',[PagesController::class,'Ersucursal'])->name('sucursal.e
 Route::get('empleadosc',[PagesController::class,'Cempleados']);
 Route::get('empleados',[PagesController::class,'Empleado']);
 Route::post('empleados',[PagesController::class,'Iempleado'])->name('empleado.crear');
+Route::get('empleadoe/{IdEmpleado}',[PagesController::class,'Aempleado'])->name('empleado.actualizar');
+Route::PUT('/empleadoe',[PagesController::class,'Arempleado'])->name('empleado.actualizarr');
+Route::get('empleadosd/{IdEmpleado}',[PagesController::class, 'Eempleado'])->name('empleado.eliminar');
+Route::PUT('/empleadosd',[PagesController::class,'Erempleado'])->name('empleado.eliminarr');
 Route::get('usuarios',[PagesController::class,'Usuarios']);
