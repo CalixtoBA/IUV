@@ -32,4 +32,7 @@ Route::get('empleadoe/{IdEmpleado}',[PagesController::class,'Aempleado'])->name(
 Route::PUT('/empleadoe',[PagesController::class,'Arempleado'])->name('empleado.actualizarr');
 Route::get('empleadosd/{IdEmpleado}',[PagesController::class, 'Eempleado'])->name('empleado.eliminar');
 Route::PUT('/empleadosd',[PagesController::class,'Erempleado'])->name('empleado.eliminarr');
+Route::get('usuarioc',[PagesController::class,'Cusuario']);
 Route::get('usuarios',[PagesController::class,'Usuarios']);
+Route::get('usuarion/{IdEmpleado}',[PagesController::class,'Nusuario'])->name('usuario.nuevo');
+Route::post('usuarion',[PagesController::class,'Iusuario'])->name('usuario.insertar');

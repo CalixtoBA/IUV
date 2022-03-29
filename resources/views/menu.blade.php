@@ -21,7 +21,7 @@
               <a class="nav-link active" aria-current="page" href="empleadosc">Empleados</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="usuarios">Usuarios</a>
+              <a class="nav-link active" aria-current="page" href="usuarioc">Usuarios</a>
             </li>
           </ul>
         </div>
