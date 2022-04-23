@@ -264,7 +264,7 @@ class PagesController extends Controller
   }
   Public function Usuarios(){
     $cempleado = DB::table('empleados')->select('IdEmpleado',DB::raw("CONCAT(NombreE,' ',A_Paterno,' ',A_Materno) as Empleado"),'EmailE')
-                  ->where('IdEmpleado','>',1)
+                  ->where('empleados.IdEmpleado','>',1)
                   ->get();
     return view('usuarios',compact('cempleado'));
   }
@@ -282,6 +282,25 @@ class PagesController extends Controller
     $iusuario->Contraseña = $Datos->input('contraseña');
     $iusuario->IdStatus = $Datos->input('estatus');
     $iusuario->save();
+    return redirect('/usuarioc');
+  }
+  Public function Eusuario($IdUsuario){
+    //$cempleado = DB::table('empleados')->select('IdEmpleado',DB::raw("CONCAT(NombreE,' ',A_Paterno,' ',A_Materno) as Empleado"),'EmailE')
+    $cempleado = Usuario::join('empleados','empleados.IdEmpleado','=','usuarios.IdEmpleado')
+                  ->join('statuses','statuses.IdStatus','=','usuarios.IdStatus')
+                  ->select('usuarios.IdUsuario',DB::raw("CONCAT(empleados.NombreE,' ',empleados.A_Paterno,' ',empleados.A_Materno)
+                    as Empleado"),'empleados.EmailE','usuarios.IdStatus','statuses.N_Status')
+                  ->where('usuarios.IdUsuario','=',$IdUsuario)
+                  ->get();
+    $Cstatus = Status::all();
+    return view('usuarioe',compact('cempleado','Cstatus'));
+  }
+  Public function Erusuario(Request $request){
+    //return $request->all();
+    $ausuario = Usuario::where('IdUsuario','=',$request->identificador)->first();
+    $ausuario->Contraseña = $request->contraseña;
+    $ausuario->IdStatus = $request->estatus;
+    $ausuario->save();
     return redirect('/usuarioc');
   }
 }

@@ -12,7 +12,7 @@
           @foreach ($cusuario as $key)
             <div class="col-9 d-inline">
               <a href="usuarios" class="btn btn-outline-secondary" type="button">Nuevo registro</a>
-              <a class="btn btn-outline-secondary" type="button">Actualizar registro</a>
+              <a href="{{Route('usuario.editar', $key->IdUsuario)}}" class="btn btn-outline-secondary" type="button">Actualizar registro</a>
               <a class="btn btn-outline-secondary" type="button">Eliminar registro</a>
               <a href="menu" class="btn btn-outline-secondary" type="button">Salir</a>
             </div>

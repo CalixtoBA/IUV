@@ -36,3 +36,5 @@ Route::get('usuarioc',[PagesController::class,'Cusuario']);
 Route::get('usuarios',[PagesController::class,'Usuarios']);
 Route::get('usuarion/{IdEmpleado}',[PagesController::class,'Nusuario'])->name('usuario.nuevo');
 Route::post('usuarion',[PagesController::class,'Iusuario'])->name('usuario.insertar');
+Route::get('usuarioe/{IdUsuario}',[PagesController::class,'Eusuario'])->name('usuario.editar');
+Route::PUT('/usuarioe',[PagesController::class,'Erusuario'])->name('usuario.editarr');
